@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko-Kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF.js Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>PDF.js Example in Spring Boot</h1>
+    <p>
+    <h2>이 예제의 목적</h2>
+    <ul>
+        <li>PDF.js를 사용해서 PDF를 출력하는 예제를 만든다.</li>
+        <li>js방식과 mjs방식을 둘 다 사용해서 출력한다.</li>
+        <li>js방식일 때는 필요 js만 저장해두고 사용하도록 한다.</li>
+        <li>mjs방식일 때는 webjar을 사용하도록 한다.</li>
+    </ul>
+    <a href="/viewer_js" class="btn">js방식</a>
+    <a href="/viewer_mjs" class="btn">mjs방식</a>
+</div>
+</body>
+</html>
