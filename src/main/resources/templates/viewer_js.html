@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko-Kr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
         }
+
         #header {
             background-color: #333;
             color: white;
@@ -18,36 +19,69 @@
             justify-content: space-between;
             align-items: center;
         }
+
         #header h1 {
             margin: 0;
             font-size: 1.5em;
         }
+
         #header a {
             color: white;
             text-decoration: none;
         }
+
         #container {
             display: flex;
             flex-direction: column;
             height: 100vh;
         }
+
         #viewer {
+            display: flex;
             flex: 1;
+            flex-direction: column;
             border: none;
             width: 100%;
+            align-items: center;
+        }
+
+        #pdf-viewer {
+            border: red solid thick;
         }
     </style>
+    <script type="text/javascript" src="/js/pdf/3.5.141/pdf.min.js">
+    </script>
 </head>
 <body>
-    <div id="container">
-        <div id="header">
-            <h1>PDF.js Viewer js</h1>
-            <a href="/">Back to Home</a>
-        </div>
+<div id="container">
+    <div id="header">
+        <h1>PDF.js Viewer js</h1>
+        <a href="/">Back to Home</a>
     </div>
+    <div id="viewer">
+        <canvas id="pdf-viewer"></canvas>
+    </div>
+</div>
 
-    <script>
-        // You can add custom JavaScript here if needed
-    </script>
+<script>
+    const pdfUri = `/pdf/dummy.pdf`;
+    pdfjsLib.getDocument(pdfUri).promise.then(function (pdf) {
+        pdf.getPage(1).then(function (page) {
+            const scale = 1;
+            const viewport = page.getViewport({scale: scale});
+
+            const canvas = document.getElementById("pdf-viewer");
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            const context = canvas.getContext('2d');
+            page.render({
+                canvasContext: context, viewport: viewport
+            });
+        });
+    }).catch(function (error) {
+        throw new Error('Error loading PDF document: ' + error.message);
+    });
+</script>
 </body>
 </html>
